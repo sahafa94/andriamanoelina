@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasina ANDRIAMANOELINA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #161a23; /* Gris sombre élégant */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8; /* Touche bleu ciel subtile */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            background-image: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+        }
+
+        /* Menu tout en haut à gauche en ligne */
+        nav {
+            padding: 2.5rem 0 0 4rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--text-main);
+            border-bottom: 1px solid var(--accent);
+        }
+
+        /* Layout principal asymétrique */
+        .main-container {
+            flex: 1;
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            box-sizing: border-box;
+            gap: 4rem;
+        }
+
+        /* Côté gauche : Ta Photo */
+        .profile-side {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            filter: grayscale(20%);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            background-color: #222733;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Côté droit : Le Contenu */
+        .content-side {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Style des textes et titres */
+        .large-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .welcome-tag {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-style: italic;
+            margin: 0;
+        }
+
+        p {
+            line-height: 1.8;
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Style spécifique de la page Contact */
+        .contact-info {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .social-icons-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .social-icon {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .social-icon.fb:hover { color: #1877F2; transform: translateY(-2px); }
+        .social-icon.x:hover { color: #ffffff; transform: translateY(-2px); }
+        .social-icon.gmail:hover { color: #ea4335; transform: translateY(-2px); }
+
+        /* Le Formulaire de Message Direct */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem;
+            border-radius: 0.35rem;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.75rem;
+            border-radius: 0.35rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.15);
+        }
+
+        /* Section Articles tout en bas au centre */
+        .articles-footer {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .articles-footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .article-placeholder {
+            font-size: 0.95rem;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 2rem; justify-content: center; }
+            .main-container { flex-direction: column; gap: 2rem; padding: 2rem 1.5rem; }
+            .profile-side { justify-content: center; }
+            .profile-img { width: 200px; height: 260px; }
+            .large-name { font-size: 2.5rem; text-align: center; }
+            .welcome-tag { text-align: center; }
+            .contact-form { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <button class="nav-btn active" onclick="openTab('home')">Introduction</button>
+        <button class="nav-btn" onclick="openTab('about')">À propos</button>
+        <button class="nav-btn" onclick="openTab('contact')">Contact</button>
+    </nav>
+
+    <div class="main-container">
+        
+        <div class="profile-side">
+            <img src="PROFIL.jpg" alt="Hasina ANDRIAMANOELINA" class="profile-img">
+        </div>
+
+        <div class="content-side">
+            
+            <div id="home" class="tab-content active">
+                <h1 class="large-name">Hasina ANDRIAMANOELINA</h1>
+                <p class="welcome-tag">« Bienvenu chez moi »</p>
+                <div style="margin-top: 2.5rem;">
+                    <p style="font-size: 1.15rem; color: var(--text-muted); font-weight: 300;">Mars 1994</p>
+                    <p style="font-size: 1.25rem; line-height: 1.6;">Analyste en revue de presse et amateur développeur web.</p>
+                </div>
+            </div>
+
+            <div id="about" class="tab-content">
+                <p>Né en mars 1994, je suis passionné de tout ce qui touche la technologie, les découvertes et la nature qui nous entoure.</p>
+                <p>J'ai fait mes études en communication et ma plus grande expérience est mon initiation dans le monde du développement web, car cela réveille mon côté créatif et m'aide à repousser mes limites en tant que communicateur.</p>
+                <p>Je fais aussi partie du mouvement scout dont j'ai reçu le nom par totémisation de <strong style="color: var(--accent);">« Angora Mizara »</strong> qui veut tout simplement dire <em>"Chat Angora Partageur"</em>.</p>
+            </div>
+
+            <div id="contact" class="tab-content">
+                <div class="contact-info">
+                    <strong>Antananarivo (101)</strong><br>
+                    <span style="color: var(--text-muted);">Madagascar</span>
+                </div>
+                
+                <div class="social-icons-row">
+                    <a href="https://www.facebook.com/hasina.microbe" target="_blank" class="social-icon fb" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="mailto:hasina2.madamonitor@gmail.com" class="social-icon gmail" title="Gmail"><i class="fas fa-envelope"></i></a>
+                    <a href="#" target="_blank" class="social-icon x" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                </div>
+
+                <form action="https://formspree.io/f/TON_ID_FORMSPREE" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="email">Votre adresse email</label>
+                        <input type="email" name="_replyto" id="email" class="form-input" placeholder="exemple@mail.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Objet</label>
+                        <input type="text" name="_subject" id="subject" class="form-input" placeholder="Sujet de votre message" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea name="message" id="message" class="form-input" placeholder="Écrivez votre message ici..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Envoyer le message</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="articles-footer">
+        <h3>Publications & Écrits</h3>
+        <div class="article-placeholder">
+            Les revues et focus sur les organisations à but non lucratif seront introduits ici prochainement.
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
