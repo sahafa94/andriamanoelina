@@ -11,10 +11,10 @@
     
     <style>
         :root {
-            --bg-color: #161a23; /* Gris sombre élégant */
+            --bg-color: #161a23;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent: #38bdf8; /* Touche bleu ciel subtile */
+            --accent: #38bdf8;
         }
 
         body {
@@ -30,7 +30,6 @@
             background-image: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
         }
 
-        /* Menu tout en haut à gauche en ligne */
         nav {
             padding: 2.5rem 0 0 4rem;
             display: flex;
@@ -55,7 +54,6 @@
             border-bottom: 1px solid var(--accent);
         }
 
-        /* Layout principal asymétrique */
         .main-container {
             flex: 1;
             display: flex;
@@ -67,31 +65,30 @@
             gap: 4rem;
         }
 
-        /* Côté gauche : Ta Photo */
         .profile-side {
-            flex: 1;
+            flex: 1.2;
             display: flex;
-            justify-content: flex-end;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
         }
 
         .profile-img {
-            width: 280px;
-            height: 380px;
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            max-height: 550px;
             object-fit: cover;
             border-radius: 0.5rem;
             filter: grayscale(20%);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            background-color: #222733;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            -webkit-mask-image: radial-gradient(circle, black 55%, transparent 95%);
+            mask-image: radial-gradient(circle, black 55%, transparent 95%);
         }
 
-        /* Côté droit : Le Contenu */
         .content-side {
             flex: 1.5;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
         }
 
         .tab-content {
@@ -99,11 +96,11 @@
             animation: fadeIn 0.5s ease-out forwards;
         }
 
+        /* Gère l'affichage lorsque l'onglet possède la classe active */
         .tab-content.active {
             display: block;
         }
 
-        /* Style des textes et titres */
         .large-name {
             font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
@@ -127,7 +124,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Style spécifique de la page Contact */
         .contact-info {
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
@@ -151,7 +147,6 @@
         .social-icon.x:hover { color: #ffffff; transform: translateY(-2px); }
         .social-icon.gmail:hover { color: #ea4335; transform: translateY(-2px); }
 
-        /* Le Formulaire de Message Direct */
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -214,28 +209,95 @@
             box-shadow: 0 10px 20px rgba(56, 189, 248, 0.15);
         }
 
-        /* Section Articles tout en bas au centre */
+        /* Styles de la section Articles */
         .articles-footer {
-            max-width: 700px;
+            max-width: 1000px;
             width: 100%;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 3rem 2rem 5rem 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
             box-sizing: border-box;
         }
 
         .articles-footer h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--text-muted);
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            color: var(--text-main);
+            text-align: center;
         }
 
-        .article-placeholder {
-            font-size: 0.95rem;
-            color: #64748b;
-            font-style: italic;
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            width: 100%;
+        }
+
+        .article-card {
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .article-card:hover {
+            border-color: rgba(56, 189, 248, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .article-cover-wrapper {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .article-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: grayscale(10%) brightness(0.9);
+        }
+
+        .article-card:hover .article-cover {
+            transform: scale(1.05);
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .article-info {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .article-title-link {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-main);
+            text-decoration: none;
+            line-height: 1.4;
+            transition: color 0.2s;
+        }
+
+        .article-title-link:hover {
+            color: var(--accent);
+        }
+
+        .article-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: auto;
+            padding-top: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         @keyframes fadeIn {
@@ -247,29 +309,28 @@
             nav { padding: 2rem; justify-content: center; }
             .main-container { flex-direction: column; gap: 2rem; padding: 2rem 1.5rem; }
             .profile-side { justify-content: center; }
-            .profile-img { width: 200px; height: 260px; }
+            .profile-img { width: 240px; height: auto; }
             .large-name { font-size: 2.5rem; text-align: center; }
             .welcome-tag { text-align: center; }
             .contact-form { max-width: 100%; }
+            .articles-grid { grid-template-columns: 1fr; gap: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <button class="nav-btn active" onclick="openTab(event, 'home')">Introduction</button>
+        <button id="defaultOpen" class="nav-btn active" onclick="openTab(event, 'home')">Introduction</button>
         <button class="nav-btn" onclick="openTab(event, 'about')">À propos</button>
         <button class="nav-btn" onclick="openTab(event, 'contact')">Contact</button>
     </nav>
 
     <div class="main-container">
-        
         <div class="profile-side">
             <img src="PROFIL.jpg" alt="Hasina ANDRIAMANOELINA" class="profile-img">
         </div>
 
         <div class="content-side">
-            
             <div id="home" class="tab-content active">
                 <h1 class="large-name">Hasina ANDRIAMANOELINA</h1>
                 <p class="welcome-tag">« Bienvenue chez moi »</p>
@@ -294,7 +355,7 @@
                 <div class="social-icons-row">
                     <a href="https://www.facebook.com/hasina.microbe" target="_blank" class="social-icon fb" title="Facebook"><i class="fab fa-facebook"></i></a>
                     <a href="mailto:hasina2.madamonitor@gmail.com" class="social-icon gmail" title="Gmail"><i class="fas fa-envelope"></i></a>
-                    <a href="#" target="_blank" class="social-icon x" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://x.com" target="_blank" class="social-icon x" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
                 </div>
 
                 <form action="https://formspree.io/f/TON_ID_FORMSPREE" method="POST" class="contact-form">
@@ -302,43 +363,79 @@
                         <label for="email">Votre adresse email</label>
                         <input type="email" name="_replyto" id="email" class="form-input" placeholder="exemple@mail.com" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="subject">Objet</label>
                         <input type="text" name="_subject" id="subject" class="form-input" placeholder="Sujet de votre message" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="message">Message</label>
                         <textarea name="message" id="message" class="form-input" placeholder="Écrivez votre message ici..." required></textarea>
                     </div>
-                    
                     <button type="submit" class="submit-btn">Envoyer le message</button>
                 </form>
             </div>
-
         </div>
     </div>
 
     <div class="articles-footer">
         <h3>Publications & Écrits</h3>
-        <div class="article-placeholder">
-            Les revues et focus sur les organisations à but non lucratif seront introduits ici prochainement.
+        <div class="articles-grid">
+            
+            <div class="article-card">
+                <div class="article-cover-wrapper">
+                    <img src="journalisme-mada.png" alt="Journalisme Madagascar" class="article-cover">
+                </div>
+                <div class="article-info">
+                    <a href="madagascar-journalisme.html" target="_self" class="article-title-link">
+                        Madagascar : Le journalisme à l’épreuve des « facebookeurs », entre déontologie et dictature du clic
+                    </a>
+                    <div class="article-meta">Janv 2026 • Revue de presse</div>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-cover-wrapper">
+                    <img src="ia-jeunesse-mada.png" alt="L'IA et la Jeunesse Malgache" class="article-cover">
+                </div>
+                <div class="article-info">
+                    <a href="ia-jeunesse-malgache.html" target="_self" class="article-title-link">
+                        L’IA et la Jeunesse Malgache : Entre Mutation des Ambitions et Urgence Éducative
+                    </a>
+                    <div class="article-meta">Juin 2026 • Chronique</div>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <script>
         function openTab(evt, tabId) {
+            // 1. Retire la classe active de tous les contenus d'onglets
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
 
+            // 2. Retire la classe active de tous les boutons du menu
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            document.getElementById(tabId).classList.add('active');
-            evt.currentTarget.classList.add('active');
+            // 3. Ajoute la classe active sur l'onglet ciblé
+            const currentTab = document.getElementById(tabId);
+            if (currentTab) {
+                currentTab.classList.add('active');
+            }
+            
+            // 4. Met en valeur le bouton de navigation cliqué
+            if (evt) {
+                evt.currentTarget.classList.add('active');
+            } else {
+                document.getElementById('defaultOpen').classList.add('active');
+            }
         }
-    </script>
 
+        // Active le premier onglet par défaut dès le chargement
+        document.addEventListener("DOMContentLoaded", function() {
+            openTab(null, 'home');
+        });
+    </script>
 </body>
 </html>
