@@ -257,9 +257,9 @@
 <body>
 
     <nav>
-        <button class="nav-btn active" onclick="openTab('home')">Introduction</button>
-        <button class="nav-btn" onclick="openTab('about')">À propos</button>
-        <button class="nav-btn" onclick="openTab('contact')">Contact</button>
+        <button class="nav-btn active" onclick="openTab(event, 'home')">Introduction</button>
+        <button class="nav-btn" onclick="openTab(event, 'about')">À propos</button>
+        <button class="nav-btn" onclick="openTab(event, 'contact')">Contact</button>
     </nav>
 
     <div class="main-container">
@@ -272,7 +272,7 @@
             
             <div id="home" class="tab-content active">
                 <h1 class="large-name">Hasina ANDRIAMANOELINA</h1>
-                <p class="welcome-tag">« Bienvenu chez moi »</p>
+                <p class="welcome-tag">« Bienvenue chez moi »</p>
                 <div style="margin-top: 2.5rem;">
                     <p style="font-size: 1.15rem; color: var(--text-muted); font-weight: 300;">Mars 1994</p>
                     <p style="font-size: 1.25rem; line-height: 1.6;">Analyste en revue de presse et amateur développeur web.</p>
@@ -281,7 +281,7 @@
 
             <div id="about" class="tab-content">
                 <p>Né en mars 1994, je suis passionné de tout ce qui touche la technologie, les découvertes et la nature qui nous entoure.</p>
-                <p>J'ai fait mes études en communication et ma plus grande expérience est mon initiation dans le monde du développement web, car cela réveille mon côté créatif et m'aide à repousser mes limites en tant que communicateur.</p>
+                <p>J'ai fait mes études en communication et ma plus grande expérience l'initiation dans le monde du développement web, car cela réveille mon côté créatif et m'aide à repousser mes limites en tant que communicateur.</p>
                 <p>Je fais aussi partie du mouvement scout dont j'ai reçu le nom par totémisation de <strong style="color: var(--accent);">« Angora Mizara »</strong> qui veut tout simplement dire <em>"Chat Angora Partageur"</em>.</p>
             </div>
 
@@ -328,7 +328,7 @@
     </div>
 
     <script>
-        function openTab(tabId) {
+        function openTab(evt, tabId) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
 
@@ -336,7 +336,7 @@
             buttons.forEach(btn => btn.classList.remove('active'));
 
             document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
+            evt.currentTarget.classList.add('active');
         }
     </script>
 
